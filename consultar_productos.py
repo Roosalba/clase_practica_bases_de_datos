@@ -6,8 +6,14 @@ conexion = sqlite3.connect("productos.db")
 cursor = conexion.cursor()
 
 
+
+
+
 # Le pedimos todos los productos
 cursor.execute("SELECT * FROM productos")
+
+
+
 
 
 # Con fetchall() traemos los resultados y los guardamos en una variable
@@ -36,9 +42,9 @@ for producto in productos_filtrados:
 
 # CONSULTAS USANDO ORDEN BY
 # Ordenar los productos por precio (ascendente)
-cursor.execute("SELECT * FROM productos ORDER BY precio ASC")
+cursor.execute("SELECT * FROM productos ORDER BY precio ASC") # ACA ME TRAE EL SELECT
 
-productos_menores=cursor.fetchall()
+productos_menores=cursor.fetchall()# LUEGO ACA CREAMOS UNA VARIALE PARA GUARDAR LO QUE BUSCO EL CURSOR
 
 print("\n=== Productos ordenados de menor a mayor")
 for producto in productos_menores:
