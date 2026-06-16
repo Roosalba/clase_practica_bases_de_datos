@@ -1,7 +1,7 @@
-import sqlite3
-# Conexión a la base de datos
-conexion = sqlite3.connect("productos.db")
-cursor = conexion.cursor()
+from conexion_db import obtener_conexion
+
+conexion=obtener_conexion()
+cursor=conexion.cursor()
 
 
 cursor.execute('''

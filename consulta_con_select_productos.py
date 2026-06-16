@@ -1,20 +1,11 @@
-import sqlite3
+from conexion_db import obtener_conexion
 
-
-# Conexión a la base de datos
-conexion = sqlite3.connect("productos.db")
-cursor = conexion.cursor()
-
-
-
+conexion=obtener_conexion()
+cursor=conexion.cursor()
 
 
 # Le pedimos todos los productos
 cursor.execute("SELECT * FROM productos")
-
-
-
-
 
 # Con fetchall() traemos los resultados y los guardamos en una variable
 resultados = cursor.fetchall()
@@ -50,6 +41,18 @@ print("\n=== Productos ordenados de menor a mayor")
 for producto in productos_menores:
     print(f"ID: {producto[0]} Nombre: {producto[1]} Precio: {producto[2]:.2f}")
 
+
+''' si solo queremos trear algunos campos, no colocamos el *, si no que colocamos
+ lo que queremos, por ejemplo el nombre, quedaria de la siguiente manera
+ '''
+
+# Obtener solo los nombres de los productos
+cursor.execute('SELECT nombre FROM productos')
+nombres=cursor.fetchall()
+print('\n=== Nombre de Productos ===')
+
+for nombre in nombres:
+    print(f'producto: {nombre[0]}')
 
 
 

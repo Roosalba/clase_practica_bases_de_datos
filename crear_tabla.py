@@ -1,10 +1,10 @@
-import sqlite3
 
+from conexion_db import obtener_conexion
 # Establecer la conexión a la base de datos
-conexion=sqlite3.connect("productos.db")
 
 
 # Crear un objeto cursor
+conexion=obtener_conexion()
 cursor = conexion.cursor()
 
 # Crear una tabla
