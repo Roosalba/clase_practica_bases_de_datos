@@ -33,9 +33,29 @@ print("\n=== Producto Actualizado ===")
 print(f"ID:  {producto_actualizado[0]},  Nombre:  {producto_actualizado[1]}, Precio: ${producto_actualizado[2]:.2f}")
 
 
+#  Incrementar en un 10% los precios de los productos con precio menor a
+# $100
+
+cursor.execute('UPDATE productos SET precio = precio * 1.10 WHERE precio < ? ',(100,))
 
 
+# Confirmar cambios
+conexion.commit()
 
+print("Precios actualizados para productos con precio menor a $100.")
+'''
+siempre que se haga un update, delete, insert, la mejor practica es despues de hacerla
+hacer un select para comprobar si los cambios se hicieron.
 
+'''
+
+cursor.execute('SELECT * FROM productos WHERE precio < 110',())
+productos_incrementados=cursor.fetchall()
+
+print("los productos que fueron modificados son ")
+
+for pro in productos_incrementados:
+    print(f"ID: {pro[0]}, Nombre: {pro[1]} Precio {pro[2]:.2f}:")
 
 conexion.close()
+
