@@ -11,16 +11,15 @@ cursor = conexion.cursor()
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS productos(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        #codigo_barra TEXT NOT NULL UNIQUE,Este es el único que no se puede repetir 
-        nombre TEXT NOT NULL UNIQUE,
-        precio REAL NOT NULL   
-        UNIQUE(nombre,precio) # candado combinado
+        nombre TEXT NOT NULL ,
+        precio REAL NOT NULL,  
+        UNIQUE(nombre,precio) 
                )
 
 
 ''')
 
-
+print("Tabla 'productos' creada exitosamente.")
 # Confirmar los cambios y cerrar la conexión
 conexion.commit()
 conexion.close()

@@ -27,6 +27,11 @@ cursor.execute('''
 ''', ("Lápiz", 26.50))
 
 
+cursor.execute('''
+    INSERT OR IGNORE INTO productos (nombre, precio)
+    VALUES (?, ?)
+''', ("Lápiz", 27.50))
+
 print("Productos agregados exitosamente.")
 
 
