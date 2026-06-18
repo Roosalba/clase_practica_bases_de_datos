@@ -35,13 +35,33 @@ print(f"setencia DETELE ejecutada para '{nombre_producto}'.")
 
 cursor.execute("SELECT * FROM productos WHERE nombre=?" ,(nombre_producto,))
 
-todos_productos=cursor.fetchall()
+todos_productos=cursor.fetchall() # aca guardamos el select
+
+
+
+
 if not todos_productos:
     print(f"Los productos '{nombre_producto}' fue eliminado con existo")
    
 else:
     for produc in todos_productos:
         print(f"ID: {produc[0]} NOMBRE: {produc[1]} PRECIO: {produc[2]:.2f}")
+
+
+# Eliminar productos con precio menor a $50
+
+precio_limite=50
+cursor.execute("DELETE FROM productos WHERE precio < ?",(precio_limite))
+
+
+
+
+
+
+
+
+
+
 
 # Cerrar la conexión
 cursor.close()

@@ -49,14 +49,14 @@ hacer un select para comprobar si los cambios se hicieron.
 
 '''
 
-cursor.execute('SELECT * FROM productos WHERE precio < 110',())
+cursor.execute('SELECT * FROM productos WHERE precio < ?',(110,))
 productos_incrementados=cursor.fetchall()
 
 print("los productos que fueron modificados son ")
 
 for pro in productos_incrementados:
     print(f"ID: {pro[0]}, Nombre: {pro[1]} Precio {pro[2]:.2f}:")
-    
+
 cursor.close()
 conexion.close()
 
