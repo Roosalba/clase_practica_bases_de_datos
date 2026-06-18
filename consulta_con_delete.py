@@ -2,7 +2,7 @@ from conexion_db import obtener_conexion
 
 
 conexion=obtener_conexion()
-cursor=conexion.commit()
+cursor=conexion.cursor()
 
 # DELETE FROM nombre_de_tabla WHERE condicion;
 
@@ -17,8 +17,32 @@ de la siguiente manera
 cursor.execute("DELETE FROM productos WHERE nombre = ?",(nombre_producto,))
 la coma es que nos devuelve una tupla
 NOTA: siempre cuando hacemos un delete, uptade, un insert nuestra conexion
-termina en conexion.commiit() -> esto quiero decir que guardo los cambios
-
-
+termina en conexion.commiit() -> esto quiere decir que guardo los cambios
 
 '''
+# Eliminar un producto específico
+nombre_producto="Lápiz"
+cursor.execute('DELETE FROM productos WHERE nombre = ?',(nombre_producto,))
+
+
+# Confirmar cambios
+conexion.commit()
+
+
+print(f"setencia DETELE ejecutada para '{nombre_producto}'.")
+
+
+
+cursor.execute("SELECT * FROM productos WHERE nombre=?" ,(nombre_producto,))
+
+todos_productos=cursor.fetchall()
+if not todos_productos:
+    print(f"Los productos '{nombre_producto}' fue eliminado con existo")
+   
+else:
+    for produc in todos_productos:
+        print(f"ID: {produc[0]} NOMBRE: {produc[1]} PRECIO: {produc[2]:.2f}")
+
+# Cerrar la conexión
+cursor.close()
+conexion.close()

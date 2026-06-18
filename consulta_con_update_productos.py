@@ -56,6 +56,7 @@ print("los productos que fueron modificados son ")
 
 for pro in productos_incrementados:
     print(f"ID: {pro[0]}, Nombre: {pro[1]} Precio {pro[2]:.2f}:")
-
+    
+cursor.close()
 conexion.close()
 
