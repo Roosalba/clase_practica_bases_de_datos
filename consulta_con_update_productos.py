@@ -11,7 +11,7 @@ la condicion es siempre el id, para usar el uptade se usa el where
 porque sino se modifican todos los campos
 
 '''
-# Actualizar el precio de un producto específico
+# Actualizar el precio de un producto egit pushspecífico
 nuevo_precio=250.0
 id=1
 
@@ -30,7 +30,9 @@ cursor.execute('SELECT * FROM productos WHERE id =?',(id,))
 producto_actualizado= cursor.fetchone()
 
 print("\n=== Producto Actualizado ===")
-print(f"ID:  {producto_actualizado[0]},  Nombre:  {producto_actualizado[1]}, Precio: ${producto_actualizado[2]:.2f}")
+if producto_actualizado is not None:
+    print(f"ID:  {producto_actualizado[0]},  Nombre:  {producto_actualizado[1]}, Precio: ${producto_actualizado[2]:.2f}")
+else:print(f"Error: El producto con ID {id} no existe en la base de datos.")
 
 
 #  Incrementar en un 10% los precios de los productos con precio menor a
@@ -49,13 +51,13 @@ hacer un select para comprobar si los cambios se hicieron.
 
 '''
 
-cursor.execute('SELECT * FROM productos WHERE precio < ?',(110,))
+cursor.execute('SELECT * FROM productos WHERE precio < ?',(100,))
 productos_incrementados=cursor.fetchall()
 
 print("los productos que fueron modificados son ")
 
 for pro in productos_incrementados:
-    print(f"ID: {pro[0]}, Nombre: {pro[1]} Precio {pro[2]:.2f}:")
+    print(f"ID: {pro[0]}, Nombre: {pro[1]}, Precio: {pro[2]:.2f}")
 
 cursor.close()
 conexion.close()
